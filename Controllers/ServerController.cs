@@ -66,6 +66,6 @@ public class ServerController : ControllerBase
     public async Task<string> GetStatus(Guid id)
     {
         var server = await _serverService.GetStatus(id);
-        return server;
+        return server                      ;
     }
 }
