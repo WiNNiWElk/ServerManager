@@ -8,5 +8,6 @@ public class Server
     public int StorageGb { get; set; }
     public int CpuCores { get; set; }
     public DateTime? RentedAt { get; set; }
+    public DateTime? StartedAt { get; set; }
     public ServerStatus ServerStatus { get; set; }
 }

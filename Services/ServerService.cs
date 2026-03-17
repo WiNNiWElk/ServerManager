@@ -8,6 +8,8 @@ using ServerManager.Models;
 
 namespace ServerManager.Services;
 
+
+
 public class ServerService
 {
     private readonly ILogger<ServerService> _logger;
@@ -106,21 +108,16 @@ public class ServerService
             server.ServerStatus = ServerStatus.Rented;
             server.RentedAt = DateTime.UtcNow;
 
-            _logger.LogInformation("Server with id: {id} has been rented", server.Id);
-
             await _serverDbContext.SaveChangesAsync();
-
             return server;
         }
 
         if (server.ServerStatus == ServerStatus.Off)
         {
             server.ServerStatus = ServerStatus.Starting;
-
-            _logger.LogInformation("Server with id: {id} has been rented and starting now", server.Id);
+            server.StartedAt = DateTime.UtcNow;
 
             await _serverDbContext.SaveChangesAsync();
-
             return server;
         }
 
@@ -141,7 +138,10 @@ public class ServerService
         {
             server.ServerStatus = ServerStatus.Ready;
             server.RentedAt = null;
+            server.StartedAt = null;
+
             await _serverDbContext.SaveChangesAsync();
+            
             return new ServerResponseDto
             {
                 Id = server.Id,
@@ -161,6 +161,8 @@ public class ServerService
         {
             throw new Exception("Server not found");
         }
+
+        var a = new Exception();
 
         return server.ServerStatus.ToString();
     }

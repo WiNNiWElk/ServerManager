@@ -6,6 +6,7 @@ using ServerManager.Extensions;
 var builder = WebApplication.CreateBuilder(args);
 
 builder.Services.AddScoped<ServerService>();
+builder.Services.AddHostedService<ServerTimer>();
 
 builder.Services.AddControllers();
 

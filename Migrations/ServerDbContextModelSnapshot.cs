@@ -44,6 +44,9 @@ namespace ServerManager.Migrations
                     b.Property<int>("ServerStatus")
                         .HasColumnType("integer");
 
+                    b.Property<DateTime?>("StartedAt")
+                        .HasColumnType("timestamp with time zone");
+
                     b.Property<int>("StorageGb")
                         .HasColumnType("integer");
 
